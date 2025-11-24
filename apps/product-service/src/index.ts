@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 
 const app = express();
@@ -10,6 +10,14 @@ app.use(
   })
 );
 
-app.listen(8000, () => {
+app.get("/health", (req: Request, res: Response) => {
+  res.status(200).json({
+    status: "OK",
+    uptime: process.uptime(),
+    timestamp: Date.now(),
+  });
+});
+
+app.listen(8003, () => {
   console.log("Product service is running successfully");
 });

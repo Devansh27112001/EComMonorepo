@@ -10,6 +10,7 @@
     "check-types": "tsc --noEmit"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.35.4",
     "@hookform/resolvers": "^5.2.2",
     "lucide-react": "^0.545.0",
     "middleware": "^1.0.0",
@@ -22,8 +23,8 @@
     "zustand": "^5.0.8"
   },
   "devDependencies": {
-    "@repo/eslint-config": "*",
-    "@repo/typescript-config": "*",
+    "@repo/eslint-config": "file:../../packages/eslint-config",
+    "@repo/typescript-config": "file:../../packages/typescript-config",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
