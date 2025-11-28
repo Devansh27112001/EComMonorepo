@@ -1,0 +1,33 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// Each product belongs to only one category.
+// The 'categorySlug' in the Product table will be checked against the 'slug' in the Category table.
+model Product {
+  id               Int      @id @default(autoincrement())
+  name             String
+  shortDescription String
+  description      String
+  price            Int
+  sizes            String[]
+  colors           String[]
+  images           Json
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+  categorySlug     String
+  categories       Category @relation(fields: [categorySlug], references: [slug])
+}
+
+// Each category can have multiple products.
+model Category {
+  id      Int       @id @default(autoincrement())
+  name    String
+  slug    String    @unique
+  product Product[]
+}
