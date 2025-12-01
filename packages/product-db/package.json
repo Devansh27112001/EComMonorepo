@@ -1,5 +1,5 @@
 {
-  "name": "@repo/db",
+  "name": "@repo/product-db",
   "type": "module",
   "version": "0.0.0",
   "scripts": {
@@ -15,5 +15,8 @@
   },
   "devDependencies": {
     "prisma": "^7.0.1"
+  },
+  "exports": {
+    ".": "./src/index.ts"
   }
 }
