@@ -1,4 +1,4 @@
-import express, { Request, Response } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import { clerkMiddleware } from "@clerk/express";
 import { shouldBeUser } from "./middleware/authMiddleware";
@@ -14,6 +14,7 @@ app.use(
     credentials: true,
   })
 );
+app.use(express.json());
 
 app.get("/health", (req: Request, res: Response) => {
   res.status(200).json({
@@ -29,6 +30,13 @@ app.get("/test", shouldBeUser, (req, res) => {
 
 app.use("/products", productRouter);
 app.use("/categories", categoryRouter);
+
+app.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  console.log(err);
+  return res
+    .status(err.status || 500)
+    .json({ message: err.message || "Internal server error" });
+});
 app.listen(8003, () => {
   console.log("Product service is running successfully");
 });
