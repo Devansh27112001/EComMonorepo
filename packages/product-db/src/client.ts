@@ -3,7 +3,8 @@ import { PrismaClient } from "../generated/prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import { Pool } from "pg";
 
-const connectionString = `${process.env.DATABASE_URL}`;
+const connectionString =
+  "postgresql://admin:123456@localhost:5433/products?schema=public";
 // The connectionString is consoling as undefined.
 console.log(connectionString);
 
